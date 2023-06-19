@@ -1,8 +1,10 @@
 
-Note: This code repository is in construction. Currently, only the dataset, the demo and the inference code is available.
+Note: This code repository is in construction. Currently, only the dataset, the demo, and the inference code are available.
 
-dataset: https://zenodo.org/record/8037327
-demo: https://musiccritic.upf.edu/eswa_demo
+
+Dataset: https://zenodo.org/record/8037327
+
+Demo: https://musiccritic.upf.edu/eswa_demo
 
 # Combining piano performance dimensions for score difficulty classification
 
