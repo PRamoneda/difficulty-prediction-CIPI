@@ -22,15 +22,15 @@ Code, dataset, and models are made available for reproducibility.
 
 ## Installation
 
-'''
+```
 pip install -r requirements.txt
-'''
+```
 
 ## Inference
 
-'''python
+```python
 from eswa_difficulty.compute_difficulty import compute_difficulty
 
 path = 'path/to/musicxml'
 diff_ensemble, diff_p, diff_argnn, diff_virtuoso = compute_difficulty(path)
-'''
+```
