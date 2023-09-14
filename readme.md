@@ -1,11 +1,4 @@
 
->Note: This code repository is in construction. Currently, only the dataset, the demo, and the inference code are available.
-
-
-Dataset: https://zenodo.org/record/8037327
-
-Demo: https://musiccritic.upf.edu/eswa_demo
-
 # Combining piano performance dimensions for score difficulty classification
 
 Pedro Ramoneda (a,∗), Dasaem Jeong (b), Vsevolod Eremenko (a), Nazif Can Tamer (a),
@@ -28,6 +21,11 @@ To cite this work, please use the following bibtex entry:
 
 ```
 
+Dataset: https://zenodo.org/record/8037327
+
+Demo: https://musiccritic.upf.edu/eswa_demo
+
+
 ## Abstract
 
 Predicting the difficulty of playing a musical score is essential for structuring and exploring score collections. Despite its importance for music education, the automatic difficulty classification of piano scores is not yet solved, mainly due to the lack of annotated data and the subjectiveness of the annotations. This paper aims to advance the state-of-the-art in score difficulty classification with two major contributions. To address the lack of data, we present Can I Play It? (CIPI) dataset, a machine-readable piano score dataset with difficulty annotations obtained from the renowned classical music publisher Henle Verlag. 
@@ -38,7 +36,7 @@ Code, dataset, and models are made available for reproducibility.
 ## Installation
 
 ```
-pip install -r requirements.txt
+pip install git+
 ```
 
 ## Inference
