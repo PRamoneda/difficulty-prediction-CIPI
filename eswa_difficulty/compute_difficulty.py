@@ -1,6 +1,9 @@
 import os
+import pdb
 from random import randrange
 from statistics import mean
+
+import pkg_resources
 
 import eswa_difficulty.utils
 from eswa_difficulty.piano_fingering.compute_embeddings import compute_embedding_score
@@ -233,7 +236,8 @@ def get_models(device, representation):
             model = PerformanceSummariser_ordinal(n_classes=9, input_size=64)
         else:
             model = PerformanceSummariser_argnn_ordinal(number_classes=9)
-        model.load_state_dict(torch.load(f"eswa_difficulty/eswa_models/{representation}_ordinal-{model_idx}.pth"))
+        path = pkg_resources.resource_filename('eswa_difficulty', f"eswa_models/{representation}_ordinal-{model_idx}.pth")
+        model.load_state_dict(torch.load(path))
         model.to(device)
         model.eval()
         models.append(model)
@@ -309,13 +313,22 @@ def compute_difficulty_argnn(path):
     difficulty = get_pred(feats, device=device, models=models, rep="argnn")
     return average_difficulty(difficulty)
 
+def get_package_resource(resource_path):
+    return pkg_resources.resource_filename('eswa_difficulty', resource_path)
+
 
 def compute_difficulty_virtuoso(path):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     embedding_path = path + ".pt"
-    os.system(f"python3 eswa_difficulty/virtuosoNet/virtuoso --session_mode=inference "
-              f"--checkpoint=eswa_difficulty/virtuosoNet/checkpoint_last.pt "
-              f"--xml_path={path} --save_embedding={embedding_path}")
+    virtuoso_script = get_package_resource('virtuosoNet/virtuoso')
+    checkpoint_path = get_package_resource('virtuosoNet/checkpoint_last.pt')
+
+    cmd = f"python3 {virtuoso_script} --session_mode=inference " \
+          f"--checkpoint={checkpoint_path} " \
+          f"--xml_path={path} --save_embedding={embedding_path}"
+
+    os.system(cmd)
+
     emb = torch.load(embedding_path)['total_note_cat'].transpose(0, 1).squeeze()
     models = get_models(device, 'virtuoso')
     difficulty = get_pred(emb, device=device, models=models, rep="virtuoso")

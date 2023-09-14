@@ -1,11 +1,13 @@
 import traceback
 
 import numpy as np
+import pkg_resources
 import torch
 
 from eswa_difficulty.piano_fingering import GGCN
 from eswa_difficulty.piano_fingering import seq2seq_model, common
 from eswa_difficulty.virtuosoNet.virtuoso.pyScoreParser.data_class import ScoreData
+import eswa_difficulty.piano_fingering
 
 
 def choice_model(hand, architecture):
@@ -27,8 +29,9 @@ def choice_model(hand, architecture):
     if model is not None:
         assert model is not None, "bad model chosen"
     # load model saved from checkpoint
-    model_path = f"{hand}_{architecture}.pth"
-    checkpoint = torch.load(f'eswa_difficulty/piano_fingering/models/{model_path}', map_location='cuda:0' if torch.cuda.is_available() else 'cpu')
+    model_path = f"models/{hand}_{architecture}.pth"
+    model_path = pkg_resources.resource_filename('eswa_difficulty.piano_fingering', model_path)
+    checkpoint = torch.load(model_path, map_location='cuda:0' if torch.cuda.is_available() else 'cpu')
     model.load_state_dict(checkpoint['model_state_dict'])
     return model
 
