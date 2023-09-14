@@ -20,7 +20,7 @@ setup(
     url='https://github.com/pramoneda/difficulty-prediction-CIPI',
     package_data={
         'eswa_difficulty.piano_fingering': ['models/*.pth'],
-        'eswa_difficulty': ['eswa_models/*.pth', 'virtuosoNet/checkpoint_last.pt'],
+        'eswa_difficulty': ['eswa_models/*.pth', 'virtuosoNet/*'],
     },
     classifiers=[
         'License :: OSI Approved :: GNU Affero General Public License v3',
