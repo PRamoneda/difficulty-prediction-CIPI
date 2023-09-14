@@ -36,7 +36,7 @@ Code, dataset, and models are made available for reproducibility.
 ## Installation
 
 ```
-pip install git+
+pip install git+https://github.com/PRamoneda/difficulty-prediction-CIPI.git
 ```
 
 ## Inference
