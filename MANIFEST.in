@@ -1,1 +1,2 @@
 graft eswa_difficulty
+include eswa_difficulty/virtuosoNet/checkpoint_last.pt
