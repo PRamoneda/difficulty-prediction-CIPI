@@ -8,7 +8,7 @@ setup(
     name='eswa_difficulty',
     version='0.1',
     packages=find_packages(),
-    python_requires='>=3.10',
+    python_requires='>=3.8',
     install_requires=requirements,
     author='Pedro Ramoneda',
     author_email='pedro.ramoneda@upf.edu',
